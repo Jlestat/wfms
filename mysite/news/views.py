@@ -5,12 +5,10 @@ from .models import News
 
 
 def index(request):
-    news = News.objects.all()
-    res = '<h1>Список новостей </h1>'
-    for i in news:
-        res += f'<div>\n<p>{i.title}</p>\n<p>{i.content}</p>\n</div><hr>\n'
-    return HttpResponse(res)
+    news = News.objects.order_by('-created_at')
+    context = {
+        'news': news,
+        'title': 'Список новостей'
+    }
+    return render(request, 'news/index.html', context)
 
-
-def test(request):
-    return HttpResponse('<h1>Test page</h1>')
