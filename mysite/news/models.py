@@ -16,3 +16,12 @@ class News(models.Model):
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости'
         ordering = ['-created_at']
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=150, db_index=True, verbose_name='Наименование категории')
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+        ordering = ['title']
