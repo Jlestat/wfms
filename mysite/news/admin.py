@@ -11,7 +11,7 @@ class NewsAdmin(admin.ModelAdmin):
     list_editable = ('is_published',)
     list_filter = ('is_published', 'category')
     fields = (
-        'id', 'title', 'category', 'content', 'photo', 'get_photo', 'is_published', 'views', 'created_at', 'updated_at')
+        'title', 'category', 'content', 'photo', 'get_photo', 'is_published', 'views', 'created_at', 'updated_at')
     readonly_fields = ('get_photo', 'views', 'created_at', 'updated_at')
     save_on_top = True
 
