@@ -9,6 +9,14 @@ from .forms import NewsForm
 from .utils import MyMixin
 
 
+def register(request):
+    return render(request, 'news/register.html')
+
+
+def login(request):
+    return render(request, 'news/login.html')
+
+
 class HomeNews(MyMixin, ListView):
     model = News
     template_name = 'news/home_news_list.html'
