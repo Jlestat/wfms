@@ -7,10 +7,12 @@ from django.core.paginator import Paginator
 from .models import News, Category
 from .forms import NewsForm
 from .utils import MyMixin
+from django.contrib.auth.forms import UserCreationForm
 
 
 def register(request):
-    return render(request, 'news/register.html')
+    form = UserCreationForm()
+    return render(request, 'news/register.html', {'form': form})
 
 
 def login(request):

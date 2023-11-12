@@ -11,5 +11,9 @@
 
 {% block content %}
     <h1>Регистрация</h1>
+     <form  method="post">
+        {% csrf_token %}
+
+    </form>
 {% endblock %}
 
