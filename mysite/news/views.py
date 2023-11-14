@@ -4,9 +4,9 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from .models import News, Category
-from .forms import NewsForm, UserRegisterForm
-from .utils import MyMixin
+from .forms import NewsForm, UserRegisterForm, UserLoginForm
 from django.contrib import messages
+from django.contrib.auth import login, logout
 
 
 def register(request):
@@ -25,7 +25,15 @@ def register(request):
 
 
 def user_login(request):
-    return render(request, 'news/login.html')
+    if request.method == 'POST':
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserLoginForm()
+    return render(request, 'news/login.html', {'form': form})
 
 
 class HomeNews(MyMixin, ListView):
