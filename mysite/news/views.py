@@ -24,7 +24,7 @@ def register(request):
     return render(request, 'news/register.html', {'form': form})
 
 
-def login(request):
+def user_login(request):
     return render(request, 'news/login.html')
 
 
