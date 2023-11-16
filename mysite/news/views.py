@@ -63,14 +63,20 @@ class HomeNews(MyMixin, ListView):
 
 def test(request):
     if request.method == 'POST':
-        form = UserLoginForm(data=request.POST)
+        form = ContactForm(data=request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('home')
+            mail = send_mail(form.cleaned_data['subject'], form.cleaned_data['content'], 'tankistik9@mail.ru',
+                      ['jlestatt@gmail.com'], fail_silently=True)
+            if mail:
+                messages.success(request, 'Письмо отправлено')
+                return redirect('test')
+            else:
+                messages.error(request, 'Письмо не отправлено')
+        else:
+            messages.error(request, 'Письмо не отправлено')
     else:
-        form = UserLoginForm()
-    return render(request, 'news/test.html')
+        form = ContactForm()
+    return render(request, 'news/test.html', {'form': form})
 
 
 class NewsByCategory(MyMixin, ListView):
