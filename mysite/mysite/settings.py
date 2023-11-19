@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'ckeditor',
+    'captcha',
     'ckeditor_uploader',
     'news.apps.NewsConfig',
 ]
