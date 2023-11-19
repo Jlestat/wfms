@@ -41,7 +41,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    redirect('login')
+    redirect('home')
 
 
 class HomeNews(MyMixin, ListView):
@@ -76,7 +76,7 @@ def contact(request):
             messages.error(request, 'Письмо не отправлено')
     else:
         form = ContactForm()
-    return render(request, 'news/test.html', {'form': form})
+    return render(request, 'contact/test.html', {'form': form})
 
 
 class NewsByCategory(MyMixin, ListView):
